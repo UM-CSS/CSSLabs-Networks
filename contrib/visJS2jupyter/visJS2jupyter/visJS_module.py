@@ -1171,6 +1171,7 @@ def create_graph_style_file(filename = 'visJS_html_file_temp',
                          },
                          title: python_nodes[i].title,
                          shape: python_nodes[i].node_shape,
+                         image: python_nodes[i].node_image,
                          size: """+node_size_transform+"""(python_nodes[i]."""+node_size_field+""")*"""+str(node_size_multiplier)+"""*"""+str(scaling_factor)+""",
                          x: python_nodes[i].x * """+str(scaling_factor)+""",
                          y: python_nodes[i].y * """+str(scaling_factor)+"""});
