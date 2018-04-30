@@ -39,4 +39,4 @@ behaviors such as substance use.
 * Merten, D. E. (1997). "[The meaning of meanness: Popularity, competition, and conflict among junior high school girls.](http://doi.org/10.2307/2673207)" Sociology of Education.
 * Eckert, P. (1989). "The corporate structure of the school." In Jocks and Burnouts. Teacher's College Press.
 * Rapoport, A., & Horvath, W. J. (1961). "[A study of a large sociogram](https://doi.org/10.1002/bs.3830060402)". Systems Research and Behavioral Science, 6(4).
-* L. Michell, & A. Amos, (1997). "[Girls, pecking order and smoking.](https://doi.org/10.1016/S0277-9536%2896%2900295-X" Social Science & Medicine 44(12).
+* L. Michell, & A. Amos, (1997). "[Girls, pecking order and smoking.](https://doi.org/10.1016/S0277-9536%2896%2900295-X)" Social Science & Medicine 44(12).
