@@ -28,7 +28,7 @@ behaviors such as substance use.
 ## Suggested Readings
 
 ### Centrality Measures
-* Healy, K. (2013). "[Using Metadata to Find Paul Revere.](https://kieranhealy.org/blog/archives/2013/06/09/using-metadata-to-find-paul-revere/)" 
+* Healy, K. (2013). "[Using Metadata to Find Paul Revere.](https://kieranhealy.org/blog/archives/2013/06/09/using-metadata-to-find-paul-revere/)" Blog post, kieranhealy.org. 
 * Austin, D. (2006). "[How Google Finds Your Needle in the Web's Haystack.](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)" American Mathematical Society Feature Column.
 
 ### Social Networks
