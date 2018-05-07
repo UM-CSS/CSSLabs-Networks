@@ -15,13 +15,14 @@ from __future__ import print_function
 from IPython.display import HTML, Javascript
 import json
 from json import dumps
+import urllib.request
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import networkx as nx
 
 visjs_url = "https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"
-visjs = urllib.request.urlopen().read().decode('utf-8')
+visjs = urllib.request.urlopen(visjs_url).read().decode('utf-8')
 Javascript(visjs)
 
 def visjs_network(nodes_dict, edges_dict,
