@@ -20,7 +20,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import networkx as nx
 
-Javascript("https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js")
+visjs_url = "https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"
+visjs = urllib.request.urlopen().read().decode('utf-8')
+Javascript(visjs)
 
 def visjs_network(nodes_dict, edges_dict,
 
