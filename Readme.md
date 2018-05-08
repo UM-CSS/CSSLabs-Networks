@@ -13,7 +13,7 @@ It covers measures of prominence, including:
 degree, betweenness, and eigenvector centrality.
 This component also covers visualization, community structure and shortest paths.
 
-## Social Networks
+## Network Structure
 This component shows how to analyze social network by finding communities and
 bridges, by measuring connectivity, and by analyzing your own social network.
 
