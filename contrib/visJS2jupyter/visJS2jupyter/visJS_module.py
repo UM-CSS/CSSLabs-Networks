@@ -143,7 +143,7 @@ def visjs_network(nodes_dict, edges_dict,
                            # configuration
                            config_enabled = False, # Toggle the configuration interface on or off. This is an optional parameter. If left undefined and any of the other properties of this object are defined, this will be set to true.
                            config_filter = "nodes,edges", # When a string is supplied, any combination of the following is allowed: nodes, edges, layout, interaction, manipulation, physics, selection, renderer. Feel free to come up with a fun seperating character. Finally, when supplied an array of strings, any of the previously mentioned fields are accepted.
-                           container = "undefined", # This allows you to put the configure list in another HTML container than below the network.
+                           container=None, # This allows you to put the configure list in another HTML container than below the network.
                            showButton = False, # Show the generate options button at the bottom of the configurator.
 
                            # other stuff
@@ -781,7 +781,7 @@ def create_graph_style_file(filename = 'visJS_html_file_temp',
                            node_font_stroke_color = '#ffffff', # color of stroke
                            node_font_align = 'center', # other option is 'left'
                            node_icon_face = 'FontAwesome', # only used when shape is set to icon. Options are 'FontAwesome' and 'Ionicons'
-                           node_icon_code = 'undefined', # code used to define which icon to use
+                           node_icon_code = '', # code used to define which icon to use
                            node_icon_size = 50, # size of icon
                            node_icon_color = '#2B7CE9', # color of icon
                            node_image = 'undefined', # when shape set to 'image' or 'circularImage', then the URL image designated here will be used
@@ -877,7 +877,7 @@ def create_graph_style_file(filename = 'visJS_html_file_temp',
                            # configuration
                            config_enabled = False, # Toggle the configuration interface on or off. This is an optional parameter. If left undefined and any of the other properties of this object are defined, this will be set to true.
                            config_filter = "nodes,edges", # When a string is supplied, any combination of the following is allowed: nodes, edges, layout, interaction, manipulation, physics, selection, renderer. Feel free to come up with a fun seperating character. Finally, when supplied an array of strings, any of the previously mentioned fields are accepted.
-                           container = "undefined", # This allows you to put the configure list in another HTML container than below the network.
+                           container = None, # This allows you to put the configure list in another HTML container than below the network.
                            showButton = True, # Show the generate options button at the bottom of the configurator.
 
                            # other stuff
@@ -912,6 +912,9 @@ def create_graph_style_file(filename = 'visJS_html_file_temp',
     # switch bool from python to JS
     def stringify_bool(var):
       return 'true' if var else 'false'
+
+    if container is None:
+        container = "null";
 
     physics_enabled = stringify_bool(physics_enabled)
     edge_arrow_to = stringify_bool(edge_arrow_to)
@@ -1102,7 +1105,7 @@ def create_graph_style_file(filename = 'visJS_html_file_temp',
               },
               icon: {
                  face: '""" + node_icon_face + """',
-                 code: """ + node_icon_code + """,
+                 code: '""" + node_icon_code + """',
                  size: """ + str(node_icon_size) + """,
                  color:'""" + node_icon_color + """'
               },
@@ -1192,6 +1195,12 @@ def create_graph_style_file(filename = 'visJS_html_file_temp',
                         },
                          width: """ + ("python_edges[i].{} * {}".format(edge_width_field, scaling_factor) if edge_width_field else "null") + """
             });
+       }
+       if (!vizOptions.configure.container) {
+        delete vizOptions.configure.container;
+       }
+       if (!vizOptions.nodes.icon.code == '') {
+        delete vizOptions.nodes.icon.code;
        }
        //console.log(nodeArray);
        //console.log(edgeArray);
