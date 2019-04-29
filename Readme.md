@@ -3,6 +3,16 @@
 This lab will introduce you to network analysis.
 You will analyze several types of networks,
 including your own social network.
+
+## Technical Requirements
+This lab uses the `vis` javascript library to create interactive network visualizations.
+Currently, only Jupyter Notebook is able to support these visualizations, so this lab should be run
+using `jupyter notebook` and __not__ `jupyter lab`.
+To use Jupyter Notebooks on Azure Notebooks, open the notebook and select the
+"Help" > "Launch Classic Notebook" menu item.
+
+## Notebooks
+
 The lab has three components: 1. Centrality Measures, 2. Social Networks,
 and 3. Directed Networks and Social Hierarchy.
 
