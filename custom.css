@@ -1,0 +1,8 @@
+.vis-tooltip {
+	position: absolute;
+	background-color: #ffffca;
+	padding: 4px;
+	border-radius: 4px;
+	border: solid 1px gray;
+	color: #333333;
+}
