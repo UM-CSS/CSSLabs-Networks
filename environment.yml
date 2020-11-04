@@ -1,0 +1,12 @@
+name: nlp-environment
+channels:
+  - conda-forge
+  - default
+dependencies:
+  - pandas
+  - json
+  - networkx
+  - numpy
+  - scipy
+  - statsmodels
+  - matplotlib
