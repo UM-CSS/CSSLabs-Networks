@@ -4,7 +4,7 @@ channels:
   - default
 dependencies:
   - pandas
-  - json
+ # - json
   - networkx
   - numpy
   - scipy
