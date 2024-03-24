@@ -54,7 +54,7 @@ def SpringRank(A,alpha=0.,l0=1.0,l1=1.0):
         
         C= C+np.repeat(A[N-1,:][None],N,axis=0)+np.repeat(A[:,N-1].T[None],N,axis=0)
         D3 = np.zeros(A.shape)
-        for i in range(A.shape[0]):D3[i,i]=l1*(k_out[N-1,0]-k_in[0,N-1])
+        for i in range(A.shape[0]):D3[i,i]=l1*(k_out[N-1]-k_in[N-1])
 
         B=np.dot(D2,One)+np.dot(D3,One)
         A=scipy.sparse.csr_matrix(np.matrix(D1-C))
