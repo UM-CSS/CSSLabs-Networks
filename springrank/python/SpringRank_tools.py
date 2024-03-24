@@ -30,8 +30,8 @@ def SpringRank(A,alpha=0.,l0=1.0,l1=1.0):
     D2 = np.zeros(A.shape)
 
     for i in range(A.shape[0]):
-        D1[i,i]=k_out[i,0]+k_in[0,i]
-        D2[i,i]=l1*(k_out[i,0]-k_in[0,i])
+        D1[i,i]=k_out[i]+k_in[i]
+        D2[i,i]=l1*(k_out[i]-k_in[i])
 
     if alpha!=0.: 
         print('Using alpha!=0: matrix is invertible')
@@ -43,7 +43,6 @@ def SpringRank(A,alpha=0.,l0=1.0,l1=1.0):
         try:
             print('Trying scipy.sparse.linalg.spsolve(A,B)')
             rank = scipy.sparse.linalg.spsolve(A,B)
-            # rank=np.linalg.solve(A,B)
             return np.transpose(rank)
         except: 
             print('Switched to scipy.sparse.linalg.bicgstab(A,B)[0]')
@@ -58,19 +57,15 @@ def SpringRank(A,alpha=0.,l0=1.0,l1=1.0):
         for i in range(A.shape[0]):D3[i,i]=l1*(k_out[N-1,0]-k_in[0,N-1])
 
         B=np.dot(D2,One)+np.dot(D3,One)
-        # A=D1-C
         A=scipy.sparse.csr_matrix(np.matrix(D1-C))
         try:
-            linalg.cond(x) < 1/sys.float_info.epsilon
             print('Trying scipy.sparse.linalg.spsolve')
             rank = scipy.sparse.linalg.spsolve(A,B)
-            # rank=np.linalg.solve(A,B)   # cannot use it with sparse matrices
             print(rank)
             return np.transpose(rank)
         except: 
             print('Switched to scipy.sparse.linalg.bicgstab(A,B)[0]')
             rank=scipy.sparse.linalg.bicgstab(A,B)[0]
-            # rank=np.linalg.lstsq(A,B)[0]
             return np.transpose(rank)
 
 
