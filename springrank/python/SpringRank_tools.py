@@ -30,42 +30,56 @@ def SpringRank(A,alpha=0.,l0=1.0,l1=1.0):
     D2 = np.zeros(A.shape)
 
     for i in range(A.shape[0]):
+        # before NetworkX 3.0, we have following code to use with to_numpy_matrix()
+        #D1[i,i]=k_out[i,0]+k_in[0,i]
+        #D2[i,i]=l1*(k_out[i,0]-k_in[0,i])
+
+        # following two lines require networkx >= 3.0, with function to_numpy_array()
         D1[i,i]=k_out[i]+k_in[i]
         D2[i,i]=l1*(k_out[i]-k_in[i])
 
     if alpha!=0.: 
-        print('Using alpha!=0: matrix is invertible')
+        #print('Using alpha!=0: matrix is invertible')
 
         B=One*alpha*l0+np.dot(D2,One)
         A=alpha*np.eye(N)+D1-C
         A=scipy.sparse.csr_matrix(np.matrix(A))
 
         try:
-            print('Trying scipy.sparse.linalg.spsolve(A,B)')
+            #print('Trying scipy.sparse.linalg.spsolve(A,B)')
             rank = scipy.sparse.linalg.spsolve(A,B)
+            # rank=np.linalg.solve(A,B)
             return np.transpose(rank)
         except: 
-            print('Switched to scipy.sparse.linalg.bicgstab(A,B)[0]')
+            #print('Switched to scipy.sparse.linalg.bicgstab(A,B)[0]')
             rank=scipy.sparse.linalg.bicgstab(A,B)[0]
             return np.transpose(rank)
 
     else:    
-        print('Using faster computation: fixing a rank degree of freedom')
+        #print('Using faster computation: fixing a rank degree of freedom')
         
         C= C+np.repeat(A[N-1,:][None],N,axis=0)+np.repeat(A[:,N-1].T[None],N,axis=0)
         D3 = np.zeros(A.shape)
+        
+        # when networkx<3.0, use this line to match w/ to_numpy_matrix()
+        # for i in range(A.shape[0]):D3[i,i]=l1*(k_out[N-1,0]-k_in[0,N-1])
+
         for i in range(A.shape[0]):D3[i,i]=l1*(k_out[N-1]-k_in[N-1])
 
         B=np.dot(D2,One)+np.dot(D3,One)
+        # A=D1-C
         A=scipy.sparse.csr_matrix(np.matrix(D1-C))
         try:
-            print('Trying scipy.sparse.linalg.spsolve')
+            #print('Trying scipy.sparse.linalg.spsolve')
             rank = scipy.sparse.linalg.spsolve(A,B)
-            print(rank)
+            # linalg.cond(x) < 1/sys.float_info.epsilon
+            # rank=np.linalg.solve(A,B)   # cannot use it with sparse matrices
+            #print(rank)
             return np.transpose(rank)
         except: 
             print('Switched to scipy.sparse.linalg.bicgstab(A,B)[0]')
             rank=scipy.sparse.linalg.bicgstab(A,B)[0]
+            # rank=np.linalg.lstsq(A,B)[0]
             return np.transpose(rank)
 
 
